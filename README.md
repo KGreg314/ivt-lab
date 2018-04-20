@@ -30,7 +30,7 @@ As this is a really simple project, you can use the command-line build tool and 
 
 The project represents an alpha version of a spaceship.
 
-- The sship (`SpaceShip` interface) can fire one or more lasers or torpedos.
+- The sship (`SpaceShip` interface) can fire one or more lasers or torpedos.1
 - We have only one spaceship as of now (`GT4500`).
 - Currently two firing modes (`FiringMode`) are supported: firing only one or all instances of a given weapon type.
 - Lasers are not yet implemented, but the code for torpedo stores are ready (`TorpedoStore`).
