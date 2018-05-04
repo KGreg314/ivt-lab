@@ -48,7 +48,7 @@ public class GT4500 implements SpaceShip {
         }
         else {
           // try to fire the primary first
-          firingSuccess = shootfirst()
+          firingSuccess = shootfirst();
           }
         }
      }
