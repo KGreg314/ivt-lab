@@ -151,4 +151,69 @@ public class GT4500Test {
     assertEquals(false, result);
   }
 
+  // 6-os tesztem
+  @Test
+  public void fireLaser(){
+    // Arrange
+
+    // Act
+    boolean result = ship.fireLaser(FiringMode.ALL);
+
+    // Assert
+    assertEquals(false, result);
+  }
+
+    // 7-es tesztem
+  @Test
+  public void fireTorpedo_Single_FireFirstThenSecond(){
+    // Arrange
+    when(mockFirstTorpedoStore.isEmpty()).thenReturn(false);
+    when(mockFirstTorpedoStore.fire(1)).thenReturn(true);
+    when(mockSecondTorpedoStore.isEmpty()).thenReturn(false);
+    when(mockSecondTorpedoStore.fire(1)).thenReturn(true);
+    // Act
+    boolean result1 = ship.fireTorpedo(FiringMode.SINGLE);
+    boolean result2 = ship.fireTorpedo(FiringMode.SINGLE);
+
+    // Assert
+    assertEquals(true, result1 && result2);
+  }
+
+      // 8-as tesztem
+  @Test
+  public void fireTorpedo_Single_FireFirstThenFirst(){
+    // Arrange
+    when(mockFirstTorpedoStore.isEmpty()).thenReturn(false);
+    when(mockFirstTorpedoStore.fire(1)).thenReturn(true);
+    when(mockSecondTorpedoStore.isEmpty()).thenReturn(true);
+    when(mockSecondTorpedoStore.fire(1)).thenReturn(false);
+    // Act
+    boolean result1 = ship.fireTorpedo(FiringMode.SINGLE);
+    boolean result2 = ship.fireTorpedo(FiringMode.SINGLE);
+
+    // Assert
+    assertEquals(true, result1 && result2);
+  }
+
+        // 9-es tesztem
+  @Test
+  public void fireTorpedo_Single_FireFirstThenBotheAreEmpty(){
+    // Arrange
+    when(mockFirstTorpedoStore.isEmpty()).thenReturn(false);
+    when(mockFirstTorpedoStore.fire(1)).thenReturn(true);
+
+    boolean result1 = ship.fireTorpedo(FiringMode.SINGLE);
+
+    when(mockSecondTorpedoStore.isEmpty()).thenReturn(true);
+    when(mockSecondTorpedoStore.fire(1)).thenReturn(false);
+    when(mockFirstTorpedoStore.isEmpty()).thenReturn(true);
+    when(mockFirstTorpedoStore.fire(1)).thenReturn(false);
+    // Act
+
+    boolean result2 = ship.fireTorpedo(FiringMode.SINGLE);
+
+    // Assert
+    assertEquals(false, result2);
+  }
+
 }
